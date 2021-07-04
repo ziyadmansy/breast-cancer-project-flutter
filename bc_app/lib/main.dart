@@ -18,6 +18,9 @@ class MYAPP extends StatefulWidget {
 class _MYAPPState extends State<MYAPP> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Mysplashscreen());
+    return MaterialApp(
+      title: 'Breast Cancer',
+      home: Mysplashscreen(),
+    );
   }
 }
