@@ -28,11 +28,13 @@ class HomeState extends State<Home> {
     });
   }
 
-  loadModel() async {
-    await Tflite.loadModel(
+  Future<void> loadModel() async {
+    String res = await Tflite.loadModel(
       model: "app_images/model_unquant.tflite",
       labels: "app_images/labels.txt",
+      useGpuDelegate: true,
     );
+    print(res);
   }
 
   @override
