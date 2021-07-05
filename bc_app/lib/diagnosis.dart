@@ -46,32 +46,38 @@ class HomeState extends State<Home> {
     return Scaffold(
       body: _loading
           ? Container(
-        alignment: Alignment.center,
-        child: CircularProgressIndicator.adaptive(),
-      )
-          : Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _image == null ? Container() : Image.file(_image),
-            SizedBox(
-              height: 20,
-            ),
-            _outputs != null
-                ? Text(
-              "${_outputs[0]["label"]}",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                background: Paint()..color = Colors.white,
-              ),
+              alignment: Alignment.center,
+              child: CircularProgressIndicator.adaptive(),
             )
-                : Container(),
-          ],
-        ),
-      ),
+          : Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _image == null
+                      ? Container()
+                      : Image.file(
+                          _image,
+                          width: 200,
+                          height: 200,
+                        ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _outputs != null
+                      ? Text(
+                          "${_outputs[0]["label"]}",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                            background: Paint()..color = Colors.white,
+                          ),
+                        )
+                      : Container(),
+                ],
+              ),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: pickImage,
         child: Icon(Icons.image),
@@ -81,17 +87,28 @@ class HomeState extends State<Home> {
   }
 
   void pickImage() async {
-    ImagePicker picker = ImagePicker();
-    var image = await picker.getImage(source: ImageSource.gallery);
-    if (image == null) return;
-    setState(() {
-      _loading = true;
-      _image = File(image.path);
-    });
-    await classifyImage(_image);
-    setState(() {
-      _loading = false;
-    });
+    try {
+      ImagePicker picker = ImagePicker();
+      var image = await picker.getImage(source: ImageSource.gallery);
+      if (image == null) return;
+      setState(() {
+        _loading = true;
+        _image = File(image.path);
+      });
+      await classifyImage(_image);
+      setState(() {
+        _loading = false;
+      });
+    } catch (error) {
+      setState(() {
+        _loading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Something went wrong'),
+        ),
+      );
+    }
   }
 
   Future<void> classifyImage(File image) async {
@@ -104,10 +121,7 @@ class HomeState extends State<Home> {
     );
     print('output: $output');
     setState(() {
-      _loading = false;
       _outputs = output;
     });
   }
-
-
 }

@@ -21,15 +21,16 @@ class Temblet extends StatefulWidget {
 }
 
 class _TembletState extends State<Temblet> {
-  error_message() {
+  String error_message() {
     switch (widget.hint) {
       case "Enter your Full Name":
         return "Please Enter your Full Name";
       case "Enter Your Email":
         return " Please Enter your Email";
-        break;
       case "Enter Your Password":
         return "Please Enter your Password ";
+      default:
+      return '';
     }
   }
 

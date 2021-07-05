@@ -87,17 +87,20 @@ class _RegisterState extends State<Register> {
                                 await auth.register(
                                     email: email, password: pasworrd);
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Home()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home_1(),
+                                  ),
+                                );
                               } else {
                                 print("can't login");
                               }
-                            } catch (e) {
-                              return ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(e.toString()),
-                              ));
+                            } on FirebaseAuthException catch (error) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(error.message),
+                                ),
+                              );
                             }
                           },
                           child: Text(

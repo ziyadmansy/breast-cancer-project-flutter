@@ -19,7 +19,7 @@ class _MysplashscreenState extends State<Mysplashscreen> {
       backgroundColor: Colors.white,
       loadingText: Text("Pleas Wait"),
       navigateAfterSeconds:Login(),
-      seconds: 5,
+      seconds: 3,
 
     );
   }

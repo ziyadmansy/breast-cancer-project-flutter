@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bc_app/register.dart';
 import 'package:bc_app/widget/temblets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'diagnosis.dart';
@@ -95,16 +96,12 @@ class _LoginState extends State<Login> {
                                 } else {
                                   print("can't login");
                                 }
-                              } catch (e) {
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              }
-                              {
-                                return ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text(e.toString()),
-                                ));
+                              } on FirebaseAuthException catch (error) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(error.message),
+                                  ),
+                                );
                               }
                             },
                             child: Text(
