@@ -44,17 +44,20 @@ class _TembletState extends State<Temblet> {
         validator: (value) {
           if (value.isEmpty) {
             return error_message();
+          } else {
+            return null;
           }
         },
         decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            hintText: widget.hint,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.blue),
-            ),
-            prefixIcon: Icon(widget.iconData)),
+          fillColor: Colors.white,
+          filled: true,
+          hintText: widget.hint,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+          prefixIcon: Icon(widget.iconData),
+        ),
       ),
     );
   }

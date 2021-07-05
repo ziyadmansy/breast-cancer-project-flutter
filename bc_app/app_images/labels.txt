@@ -1,0 +1,2 @@
+0 Benign 0
+1 Malignant 1

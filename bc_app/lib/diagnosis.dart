@@ -28,16 +28,26 @@ class HomeState extends State<Home> {
     });
   }
 
-  int currentIndex = 2;
+  loadModel() async {
+    await Tflite.loadModel(
+      model: "app_images/model_unquant.tflite",
+      labels: "app_images/labels.txt",
+    );
+  }
+
+  @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: _loading
           ? Container(
         alignment: Alignment.center,
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator.adaptive(),
       )
           : Container(
         width: MediaQuery.of(context).size.width,
@@ -65,20 +75,26 @@ class HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: pickImage,
         child: Icon(Icons.image),
+        backgroundColor: Colors.pink,
       ),
     );
   }
 
-  pickImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (image == null) return null;
+  void pickImage() async {
+    ImagePicker picker = ImagePicker();
+    var image = await picker.getImage(source: ImageSource.gallery);
+    if (image == null) return;
     setState(() {
       _loading = true;
-      _image = image;
+      _image = File(image.path);
+    });
+    await classifyImage(_image);
+    setState(() {
+      _loading = false;
     });
   }
 
-  classifyImage(File image) async {
+  Future<void> classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
       numResults: 2,
@@ -86,22 +102,12 @@ class HomeState extends State<Home> {
       imageMean: 127.5,
       imageStd: 127.5,
     );
+    print('output: $output');
     setState(() {
       _loading = false;
       _outputs = output;
     });
   }
 
-  loadModel() async {
-    await Tflite.loadModel(
-      model: "app_images/assets/model_unquant.tflite",
-      labels: "app_images/assets/labels.txt",
-    );
-  }
 
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
 }

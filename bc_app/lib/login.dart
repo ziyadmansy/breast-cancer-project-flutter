@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool isLoading=false;
+  bool isLoading = false;
   String email, password;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
                         height: 30,
                       ),
                       Temblet(
-                        onClick: (value){
+                        onClick: (value) {
                           email = value;
                         },
                         hint: "Enter Your Email",
@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                         height: 30,
                       ),
                       Temblet(
-                        onClick: (value){
+                        onClick: (value) {
                           password = value;
                         },
                         hint: "Enter Your Password",
@@ -77,39 +77,40 @@ class _LoginState extends State<Login> {
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            onPressed: ()async{
-                              try{
+                            onPressed: () async {
+                              try {
                                 Auth auth = Auth();
                                 if (globalKey.currentState.validate()) {
                                   globalKey.currentState.save();
                                   await auth.loginWithEmailAndPassword(
-                                      email, password);
+                                    email,
+                                    password,
+                                  );
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Home_1()));
-
-                                }
-                                else{
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Home_1(),
+                                    ),
+                                  );
+                                } else {
                                   print("can't login");
                                 }
-
-
-                              }catch(e){
+                              } catch (e) {
                                 setState(() {
-                                  isLoading=false;
+                                  isLoading = false;
                                 });
                               }
-                              {return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(e.toString()),
-                              ));
+                              {
+                                return ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(e.toString()),
+                                ));
                               }
                             },
-
                             child: Text(
                               "Login",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 20),
                             ),
                             color: Colors.pink,
                           ),
@@ -147,8 +148,6 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-
-
       ),
     );
   }

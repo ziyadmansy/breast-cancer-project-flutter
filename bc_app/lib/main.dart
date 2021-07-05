@@ -1,13 +1,11 @@
-import 'package:bc_app/login.dart';
 import 'package:bc_app/splashscreen/mysplashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(MYAPP());
   await Firebase.initializeApp();
+  runApp(MYAPP());
 }
 
 class MYAPP extends StatefulWidget {

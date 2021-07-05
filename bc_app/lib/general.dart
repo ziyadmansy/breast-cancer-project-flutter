@@ -7,6 +7,8 @@ import 'diagnosis.dart';
 
 
 class General extends StatefulWidget {
+  Function setIndex;
+  General(this.setIndex);
   @override
   _GeneralState createState() => _GeneralState();
 }
@@ -31,11 +33,8 @@ class _GeneralState extends State<General> {
                   Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context)=>General()
+                         widget.setIndex(0);
 
-                          ),
-                          );
                         },
                         child: Image(
                           image: AssetImage("app_images/home.jpeg"),width: 100, height: 100,),
@@ -46,11 +45,7 @@ class _GeneralState extends State<General> {
                   Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context)=>Awareness()
-
-                          ),
-                          );
+                          widget.setIndex(1);
                         },
                         child: Image(
                           image: AssetImage("app_images/awareness.jpeg"),width: 100, height: 100,),
@@ -61,11 +56,7 @@ class _GeneralState extends State<General> {
                   Expanded(
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context)=>Home_1(),
-
-                          ),
-                          );
+                          widget.setIndex(2);
                         },
                         child: Image(
                           image: AssetImage("app_images/diagnosis.png"),width: 100, height: 100,),

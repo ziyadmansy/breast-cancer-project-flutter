@@ -5,22 +5,31 @@ import 'awareness.dart';
 import 'diagnosis.dart';
 import 'general.dart';
 
-
-
-
 class Home_1 extends StatefulWidget {
   @override
   _Home_1State createState() => _Home_1State();
 }
 
 class _Home_1State extends State<Home_1> {
-  List<Widget> tab = [
-    General(),
-    Awareness(),
-    Home(),
-
-  ];
+  List<Widget> tab = [];
   int currentIndex = 0;
+
+  void setCurrentIndex(int newIndex) {
+    setState(() {
+      currentIndex = newIndex;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tab = [
+      General(setCurrentIndex),
+      Awareness(),
+      Home(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +74,7 @@ class _Home_1State extends State<Home_1> {
               ListTile(
                 title: Text("Diagnosis"),
                 leading:
-                Icon(Icons.account_box_sharp, color: Colors.pinkAccent),
+                    Icon(Icons.account_box_sharp, color: Colors.pinkAccent),
                 //trailing: Icon(Icons.account_box_sharp),
               ),
               ListTile(
@@ -84,10 +93,9 @@ class _Home_1State extends State<Home_1> {
         ),
       ),
       appBar: AppBar(
-
+        title: Text('Breast Cancer'),
         backgroundColor: Colors.pink,
       ),
-
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.pink,
         color: Colors.white,
@@ -133,10 +141,6 @@ class _Home_1State extends State<Home_1> {
         ],
       ),
       body: tab[currentIndex],
-
     );
   }
 }
-
-
-
