@@ -1,10 +1,8 @@
-import 'package:bc_app/home.dart';
+import 'package:bc_app/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'awareness.dart';
-import 'diagnosis.dart';
-
-
+import 'scan_page.dart';
 
 class General extends StatefulWidget {
   Function setIndex;
@@ -23,49 +21,6 @@ class _GeneralState extends State<General> {
     return Scaffold(
       body: ListView(
         children: [
-          Container(
-              height: screenHeight * 0.25,
-              width: screenWidth * 0.25,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                         widget.setIndex(0);
-
-                        },
-                        child: Image(
-                          image: AssetImage("app_images/home.jpeg"),width: 100, height: 100,),
-
-                      )
-
-                  ),
-                  Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                          widget.setIndex(1);
-                        },
-                        child: Image(
-                          image: AssetImage("app_images/awareness.jpeg"),width: 100, height: 100,),
-
-                      )
-
-                  ),
-                  Expanded(
-                      child: GestureDetector(
-                        onTap: (){
-                          widget.setIndex(2);
-                        },
-                        child: Image(
-                          image: AssetImage("app_images/diagnosis.png"),width: 100, height: 100,),
-
-                      )
-
-                  ),
-                ],
-              )),
           Padding(
             padding: const EdgeInsets.all(7.0),
             child: Text(

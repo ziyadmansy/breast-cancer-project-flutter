@@ -3,18 +3,18 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  Home({Key key, this.title}) : super(key: key);
-  final String title;
+class ScanScreen extends StatefulWidget {
+  ScanScreen({Key key}) : super(key: key);
 
   @override
-  HomeState createState() => HomeState();
+  ScanScreenState createState() => ScanScreenState();
 }
 
-class HomeState extends State<Home> {
+class ScanScreenState extends State<ScanScreen> {
+  bool _loading = false;
+
   List _outputs;
   File _image;
-  bool _loading = false;
 
   @override
   void initState() {
@@ -69,18 +69,18 @@ class HomeState extends State<Home> {
                   ),
                   _outputs != null
                       ? Text(
-                          "${_outputs[0]["label"]}\nAccuracy: ${(_outputs[0]["confidence"] * 100).toStringAsFixed(0)}%",
+                          "Result: ${_outputs[0]["label"]}\nAccuracy: ${(_outputs[0]["confidence"] * 100).toStringAsFixed(1)}%",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.0,
-                            background: Paint()..color = Colors.white,
                           ),
+                          textAlign: TextAlign.center,
                         )
                       : Text(
-                          'Scan your image...',
+                          'Waiting scan image',
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
+                            color: Colors.grey,
+                            fontSize: 18.0,
                           ),
                         ),
                 ],
@@ -88,7 +88,7 @@ class HomeState extends State<Home> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: pickImage,
-        child: Icon(Icons.image),
+        child: Icon(Icons.photo_camera_outlined),
         backgroundColor: Colors.pink,
       ),
     );
@@ -97,7 +97,7 @@ class HomeState extends State<Home> {
   void pickImage() async {
     try {
       ImagePicker picker = ImagePicker();
-      var image = await picker.pickImage(source: ImageSource.camera);
+      var image = await picker.pickImage(source: ImageSource.gallery);
       if (image == null) return;
       setState(() {
         _loading = true;

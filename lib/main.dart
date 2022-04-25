@@ -1,24 +1,22 @@
 import 'package:bc_app/splashscreen/mysplashscreen.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  runApp(MYAPP());
+  runApp(MyApp());
 }
 
-class MYAPP extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _MYAPPState createState() => _MYAPPState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _MYAPPState extends State<MYAPP> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Breast Cancer',
+      title: 'Breast Scan',
       home: Splashscreen(),
     );
   }
