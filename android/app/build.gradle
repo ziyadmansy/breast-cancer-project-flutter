@@ -32,7 +32,7 @@ android {
         noCompress 'lite'
     }
 
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -40,9 +40,9 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.bc_app"
+        applicationId "com.ziyadmansy.breast_cancer_scanner"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 31
         multiDexEnabled true
 
         versionCode flutterVersionCode.toInteger()

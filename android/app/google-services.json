@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:331929392918:android:33cf96cc728f46b702a237",
         "android_client_info": {
-          "package_name": "com.example.bc_app"
+          "package_name": "com.ziyadmansy.breast_cancer_scanner"
         }
       },
       "oauth_client": [

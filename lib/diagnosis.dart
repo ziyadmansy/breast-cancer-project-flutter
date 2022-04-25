@@ -32,7 +32,7 @@ class HomeState extends State<Home> {
     String res = await Tflite.loadModel(
       model: "app_images/model_unquant.tflite",
       labels: "app_images/labels.txt",
-      useGpuDelegate: true,
+      // useGpuDelegate: true,
     );
     print(res);
   }
@@ -69,14 +69,20 @@ class HomeState extends State<Home> {
                   ),
                   _outputs != null
                       ? Text(
-                          "${_outputs[0]["label"]}",
+                          "${_outputs[0]["label"]}\nAccuracy: ${(_outputs[0]["confidence"] * 100).toStringAsFixed(0)}%",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.0,
                             background: Paint()..color = Colors.white,
                           ),
                         )
-                      : Container(),
+                      : Text(
+                          'Scan your image...',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -91,7 +97,7 @@ class HomeState extends State<Home> {
   void pickImage() async {
     try {
       ImagePicker picker = ImagePicker();
-      var image = await picker.getImage(source: ImageSource.gallery);
+      var image = await picker.pickImage(source: ImageSource.camera);
       if (image == null) return;
       setState(() {
         _loading = true;
@@ -105,9 +111,10 @@ class HomeState extends State<Home> {
       setState(() {
         _loading = false;
       });
+      print(error);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Something went wrong'),
+          content: Text(error.toString()),
         ),
       );
     }

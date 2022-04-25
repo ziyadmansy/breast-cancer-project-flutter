@@ -5,12 +5,12 @@ import 'awareness.dart';
 import 'diagnosis.dart';
 import 'general.dart';
 
-class Home_1 extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _Home_1State createState() => _Home_1State();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _Home_1State extends State<Home_1> {
+class _HomeScreenState extends State<HomeScreen> {
   List<Widget> tab = [];
   int currentIndex = 0;
 
@@ -129,10 +129,10 @@ class _Home_1State extends State<Home_1> {
           ),
           Column(
             children: [
-              Icon(Icons.add_box,
+              Icon(Icons.search,
                   color: currentIndex == 2 ? Colors.pink : Colors.black),
               Text(
-                "Diagnosis",
+                "Scan",
                 style: TextStyle(
                     color: currentIndex == 2 ? Colors.pink : Colors.black),
               ),

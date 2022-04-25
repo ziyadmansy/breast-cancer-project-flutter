@@ -1,4 +1,4 @@
-package com.example.bc_app
+package com.ziyadmansy.breast_cancer_scanner
 
 import io.flutter.embedding.android.FlutterActivity
 
