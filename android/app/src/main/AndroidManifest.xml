@@ -1,4 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.ziyadmansy.breast_cancer_scanner">
+<manifest 
+  xmlns:android="http://schemas.android.com/apk/res/android" 
+  package="com.ziyadmansy.breast_cancer_scanner">
+  
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -6,7 +9,7 @@
 
   <application  
     android:name="${applicationName}"
-    android:label="Breast Scan"
+    android:label="Cancer Scanner"
     android:usesCleartextTraffic="true"
     android:icon="@mipmap/ic_launcher">
       <activity 

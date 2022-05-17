@@ -3,6 +3,8 @@ import 'package:bc_app/login.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 
+import '../utils/shared.dart';
+
 class Splashscreen extends StatefulWidget {
   @override
   _SplashscreenState createState() => _SplashscreenState();
@@ -14,7 +16,7 @@ class _SplashscreenState extends State<Splashscreen> {
     return SplashScreen(
       loaderColor: Colors.redAccent.shade400,
       title: Text(
-        "Breast Cancer Scanner",
+        Shared.appName,
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,

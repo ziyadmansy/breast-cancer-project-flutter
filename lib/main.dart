@@ -1,4 +1,5 @@
 import 'package:bc_app/splashscreen/mysplashscreen.dart';
+import 'package:bc_app/utils/shared.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -16,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Breast Scan',
+      title: Shared.appName,
       home: Splashscreen(),
     );
   }

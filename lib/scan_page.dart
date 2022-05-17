@@ -30,8 +30,8 @@ class ScanScreenState extends State<ScanScreen> {
 
   Future<void> loadModel() async {
     String res = await Tflite.loadModel(
-      model: "app_images/model_unquant.tflite",
-      labels: "app_images/labels.txt",
+      model: "assets/model_unquant.tflite",
+      labels: "assets/labels.txt",
       // useGpuDelegate: true,
     );
     print(res);

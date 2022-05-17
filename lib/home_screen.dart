@@ -1,3 +1,4 @@
+import 'package:bc_app/utils/shared.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Breast Cancer Scanner'),
+        title: Text(Shared.appName),
         backgroundColor: Colors.pink,
       ),
       body: ScanScreen(),
